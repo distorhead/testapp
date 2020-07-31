@@ -3,15 +3,16 @@ project: myproj
 ---
 image: one
 from: ubuntu:18.04
+fromCacheVersion: "2"
 git:
 - add: /
   to: /app
-- url: https://github.com/werf/werf.git
-  to: /werf/
-  tag: v1.1.16+fix10
-  stageDependencies:
-    install:
-    - '**/*'
+#- url: https://github.com/werf/werf.git
+#  to: /werf/
+#  tag: v1.1.16+fix10
+#  stageDependencies:
+#    install:
+#    - '**/*'
 shell:
   install:
   - apt update && apt install -y vim
