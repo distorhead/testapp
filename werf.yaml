@@ -7,3 +7,10 @@ fromCacheVersion: "2"
 git:
 - add: /
   to: /app
+  stageDependencies:
+    install:
+    - .helm/templates/templates.yaml
+shell:
+  install:
+  - apt update && apt install -q -y wget
+  - wget https://github.com/werf/werf/archive/v1.1.22+fix31.zip
