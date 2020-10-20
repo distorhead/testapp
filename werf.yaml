@@ -5,11 +5,11 @@ image: one
 from: ubuntu:18.04
 fromCacheVersion: "2"
 git:
-- add: /
+- add: /.helm
   to: /app
   stageDependencies:
     install:
-    - .helm/templates/templates.yaml
+    - templates/templates.yaml
 shell:
   install:
   - apt update && apt install -q -y wget
