@@ -2,4 +2,10 @@ project: testapp
 configVersion: 1
 ---
 image: main
-from: ubuntu:19.04
+from: ubuntu:20.04
+git:
+ - add: /
+   to: /app
+shell:
+  install:
+    - echo INSTALL
