@@ -1,5 +1,4 @@
 ---
----
 apiVersion: v1
 kind: ConfigMap
 metadata:
@@ -27,7 +26,8 @@ spec:
     spec:
       containers:
       - name: nginx
-        image: nginx:1.14.1
+        image: nginx:1.14.1-alpine
+        command: ["/bin/bash", "-lec", "aaa; while true ; do sleep 1 ; done"]
         ports:
         - containerPort: 81
 ---
@@ -40,7 +40,28 @@ spec:
     spec:
       containers:
       - name: pi
-        image: {{ .Values.global.werf.image.one }}
+        image: ubuntu:18.04
         command: ["/bin/bash", "-lec", "for i in {1..20}; do date; sleep 1 ; done"]
       restartPolicy: Never
   backoffLimit: 4
+---
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  annotations:
+    kubernetes.io/ingress.class: nginx
+  name: synchronization-sticky
+spec:
+  rules:
+  - host: synchronization.werf.io
+    http:
+      paths:
+      - backend:
+          serviceName: synchronization-v1
+          servicePort: 80
+        path: /
+  tls:
+  - hosts:
+    - synchronization.werf.io
+    secretName: tls-synchronization.werf.io
+
