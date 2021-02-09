@@ -1,3 +1,0 @@
-[submodule "aaa"]
-	path = aaa
-	url = ../../werf/werf.git
