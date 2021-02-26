@@ -1,4 +1,4 @@
-project: app1
+project: monorep
 configVersion: 1
 ---
 {{ template "myimage" }}
