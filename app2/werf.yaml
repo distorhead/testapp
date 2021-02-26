@@ -1,0 +1,4 @@
+project: app2
+configVersion: 1
+---
+{{ template "myimage" }}
